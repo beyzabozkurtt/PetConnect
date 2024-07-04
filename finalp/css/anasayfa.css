@@ -1,0 +1,370 @@
+﻿
+.logo-img {
+    display: block;
+    width: 130px;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .logo-img {
+        display: block;
+        width: 100px;
+        height: auto;
+    }
+}
+
+
+.navbar {
+    width: 100%;
+    height: auto;
+    background-color: #043128cc;
+    transform: scale(0.9);
+    border-radius: 6px;
+    transition: transform 0.2s ease;
+}
+
+    .navbar.active {
+        transform: scale(1);
+        border-radius: 0px;
+        height: 115px;
+    }
+
+.nav-item {
+    font-family: Poppins;
+    font-size: x-large;
+    font-weight: 600;
+    margin-right: 10px; /* Adjust the margin value as needed */
+}
+
+.nav-link {
+    color: #fff;
+    font-family: Poppins;
+    font-size: medium;
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+    .nav-link:hover {
+        color: #36B49A;
+    }
+
+
+.custom-btn {
+    background-color: #36B49A; /* yesil */
+    color: #fff; /* Set the text color */
+    padding: 6px; /* Set the padding */
+    margin-top: 10px;
+    border-radius: 15px; /* Set the border radius */
+    width: 130px;
+    text-align: center;
+}
+
+    .custom-btn:hover {
+        background-color: beige;
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    }
+
+.custom-btn-outline {
+    border: 0.5px solid #36B49A; /* Set the border */
+    padding: 6px; /* Set the padding */
+    margin-top: 10px;
+    border-radius: 15px; /* Set the border radius */
+    width: 130px;
+    text-align: center;
+    color: #fff;
+}
+
+    .custom-btn-outline:hover {
+        background-color: beige; /* Set the background color on hover */
+        color: #36B49A; /* Set the text color on hover */
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    }
+
+.navbar-toggler {
+    border-color: #36B49A;
+}
+
+
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 112.5%;
+    background-color: #3c3a3ad3;
+}
+
+@media (max-width: 768px) {
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 112.5%;
+    }
+}
+
+
+/*header caps*/
+
+.txt1 {
+    color: #fff;
+    font-family: Poppins;
+    font-size: 80px;
+    font-weight: 700;
+    padding-top: 20px;
+    text-align: initial;
+}
+
+.txt {
+    color: #fff;
+    font-family: Poppins;
+    font-size: 50px;
+    font-weight: 600;
+    text-align: initial;
+}
+
+
+.text-container {
+    text-align: center;
+}
+
+.button {
+    background-color: #36B49A;
+    font-family: Poppins;
+    width: 300px;
+    height: 50px;
+    border-radius: 8px;
+    color: white;
+    font-size: 25px;
+    position: center;
+}
+
+    .button:hover {
+        background-color: #277a69;
+        color: white;
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+        border-radius: 8px;
+    }
+
+.carousel {
+    opacity: 50%;
+}
+
+
+
+/*text ziplatma kodu*/
+#animated-text {
+    animation: bounce 2s 2;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/*page section*/
+
+.page-section {
+    padding: 5rem 0;
+}
+
+.section1 {
+    background: #c0c5c4;
+}
+
+.kutu {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 70%; /* İstediğiniz oranı burada ayarlayabilirsiniz */
+}
+
+.kutu {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 60%;
+}
+
+
+    .kutu .arka-plan {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        opacity: 5;
+        transition: opacity 0.3s ease; /* Opaklık için geçiş efekti */
+        border-radius: 15px;
+    }
+
+.overlay1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #3c3a3ad3;
+    border-radius: 15px;
+}
+
+.kutu .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Overlay rengi ve opaklık değeri */
+    opacity: 0;
+    transition: opacity 0.3s ease; /* Opaklık için geçiş efekti */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    font-size: 1.5rem;
+    border-radius: 15px;
+}
+
+.kutu:hover .arka-plan {
+    opacity: 1; /* Hover durumunda arka planın opaklığını düşürebilirsiniz */
+    width: 103%;
+    height: 103%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.kutu:hover .overlay {
+    opacity: 2; /* Hover durumunda overlay'in opaklığını artırabilirsiniz */
+    width: 103%;
+    height: 103%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.kutu .metin {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5; /* Metnin üzerde kalmasını sağlar */
+    color: beige;
+    text-align: center;
+    font-size: 1.0rem;
+    width: 80%;
+    font-family: Poppins;
+    font-weight: 500;
+}
+
+h2 {
+    font-family: 'LEMON MILK';
+    font-weight: 700;
+    color: #e1f156;
+}
+/*section 2*/
+.section2 {
+    background-color: #d6d2d2;
+}
+
+.txt3 {
+    font-family: 'LEMON MILK';
+    font-weight: 700;
+    color: #0d4d40;
+    font-size: 50px;
+    text-align: start;
+}
+
+.p1 {
+    font-family: Poppins;
+    font-weight: 500;
+    text-align: justify;
+    color: rgb(0, 0, 0, 0,74);
+    font-size: 17px;
+}
+
+.txt4 {
+    font-family: Poppins;
+    font-weight: 700;
+    color: #043128cc;
+    font-size: 25px;
+}
+
+
+hr.divider {
+    height: 0.1rem;
+    max-width: 28rem;
+    background-color: #3c3a3ad3;
+    opacity: 20;
+}
+
+.detayli-bilgi-buton {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #36B49A;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    width: 330px;
+    font-family: Poppins;
+}
+
+    .detayli-bilgi-buton:hover {
+        background-color: #043128cc;
+    }
+
+@media (max-width: 768px) {
+    .detayli-bilgi-buton {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+}
+/*.bgcolor {
+    background: #c0c5c4;
+    border-radius: 6px;
+    padding: 5rem 0;
+    align-items: center;
+}*/
+
+
+
+footer {
+    font-family: Poppins;
+    font-weight: 100;
+}
+
+
+/*ADOPT A PET SAYFASI KODLARI*/
+/*.cont1 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+}
+
+.kutu1 {
+    border: 1px solid black;
+    padding: 10px;
+}*/
+
+
+/*ADOPT A PET SAYFASI KODLARI*/
+
+.linkler {
+    color: #fff;
+}

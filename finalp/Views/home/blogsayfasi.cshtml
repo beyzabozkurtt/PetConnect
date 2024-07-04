@@ -1,0 +1,348 @@
+﻿@model List<finalp.Models.blog>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blog Sayfası</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PetConnect</title>
+    <link rel="icon" type="image/x-icon" href="~/assets/logowhtop.png" />
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,700;1,300;1,500;1,700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href="~/css/adoptapet.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background-color: #f2f2f2;
+            padding: 30px;
+        }
+
+        header {
+            margin-top: 100px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .blog-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 50px;
+        }
+
+        .blog-post {
+            flex: 0 0 calc(50% - 10px);
+            background-color: #f5fffa;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-post-img {
+            margin-bottom: 20px;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+            .blog-post-img img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 8px;
+            }
+
+        .blog-post-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .blog-post-author {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .blog-post-date {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .blog-post-text {
+            text-align: left;
+            max-height: 100px;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: #555;
+        }
+
+            .blog-post-text.expanded {
+                max-height: none;
+            }
+
+        .blog-post-expand {
+            text-align: right;
+            margin-top: 10px;
+        }
+
+        .read-more {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 4px;
+            background-color: #79cdcd;
+            color: #f2f2f2;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+            .read-more:hover {
+                text-decoration: underline;
+                background-color: #e6e6fa;
+                color: #66cdaa;
+            }
+
+        .like-icon {
+            color: #888;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+
+            .like-icon.liked {
+                color: red;
+            }
+
+        .like-count {
+            font-size: 14px;
+            color: #888;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".like-icon").click(function () {
+                var likeCount = parseInt($(this).siblings(".like-count").text());
+                $(this).toggleClass("liked");
+                if ($(this).hasClass("liked")) {
+                    $(this).siblings(".like-count").text(likeCount + 1);
+                } else {
+                    $(this).siblings(".like-count").text(likeCount - 1);
+                }
+            });
+
+            $(".read-more").click(function () {
+                var blogPost = $(this).closest(".blog-post");
+                blogPost.find(".blog-post-text").toggleClass("expanded");
+                if (blogPost.find(".blog-post-text").hasClass("expanded")) {
+                    $(this).text("Daha Az Gör");
+                } else {
+                    $(this).text("Devamını Gör");
+                }
+            });
+        });</script>
+</head>
+<body>
+
+
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="myNav">
+        <div class="container px-3 px-lg-6 navbar-header page-scroll ">
+            <a class="navbar-brand" href="#page-top"><img class="logo-img" src="~/assets/logowhite.png"></a>
+
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto my-2 my-lg-0">
+                    <li class="nav-item  "><a class="nav-link text-light" id="link" href="@Url.Action("anasayfa", "home")">Anasayfa</a></li>
+
+
+                    <li class="nav-item  "><a class="nav-link text-light" id="link" href="#footer">İletişim</a></li>
+
+
+                </ul>
+
+
+            </div>
+        </div>
+    </nav>
+
+
+
+    <header class="text-center py-5 ">
+    </header>
+    
+
+
+
+    <div class="container">
+        <h2 class="text-center mt-5">PetConnect Blog</h2>
+
+
+        @*veritabanindan gelen bilgiler*@
+        @foreach (var blogs in Model) // blog tablosundaki her bir gönderi için döngü oluşturuyoruz
+    {
+        <div class="blog-row">
+            <div class="blog-post">
+                <div class="blog-post-img">
+                    <img src="@blogs.ResimURL" alt="Blog Görseli">
+                </div>
+                <div class="blog-post-content">
+                    <h3 class="blog-post-title">@blogs.Baslik</h3>
+                    <p class="blog-post-author">Yazar: @blogs.Yazar</p>
+                    <p class="blog-post-date">Tarih: @blogs.Tarih</p>
+                    <div class="blog-post-text">
+                        <p>
+                            @blogs.Icerik
+                        </p>
+                    </div>
+                    <div class="blog-post-expand">
+                        <a href="#" class="read-more">Devamını Gör</a>
+                    </div>
+                    <div class="blog-post-like">
+                        <i class="like-icon far fa-heart"></i>
+                        <span class="like-count">289</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+        <div class="blog-row">
+            <div class="blog-post">
+                <div class="blog-post-img">
+                    <img src="https://cdn1.ntv.com.tr/gorsel/kJ6CdMc2u0-LusIl6ZvO2g.jpg?width=1000&mode=crop&scale=both" alt="Blog Görseli 1">
+                </div>
+                <div class="blog-post-content">
+                    <h3 class="blog-post-title">Hayatımızı Değiştiren Bir Deneyim</h3>
+                    <p class="blog-post-author">Yazar: PetLover123</p>
+                    <p class="blog-post-date">Tarih: 21 Haziran 2023</p>
+                    <div class="blog-post-text">
+                        <p>
+                            Merhaba! Ben PetLover123. Bugün sizlere hayatımızı değiştiren bir deneyimimizi paylaşmak istiyorum.
+                            PetConnect üzerinden tanıştığımız Minnoş isimli bir kediye sahiplendik ve hayatımızın en güzel kararını vermiş olduk.
+                            Minnoş, ailemizin bir parçası oldu ve bize sonsuz mutluluk ve sevgi getirdi.
+                        </p>
+                    </div>
+                    <div class="blog-post-expand">
+                        <a href="#" class="read-more">Devamını Gör</a>
+                    </div>
+                    <div class="blog-post-like">
+                        <i class="like-icon far fa-heart"></i>
+                        <span class="like-count">35 beğeni</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-post">
+                <div class="blog-post-img">
+                    <img src="https://i.cnnturk.com/i/cnnturk/75/740x416/613723a270380e0fd09bde49.jpg" alt="Blog Görseli 2">
+                </div>
+                <div class="blog-post-content">
+                    <h3 class="blog-post-title">Evlat Edinme Hikayemiz</h3>
+                    <p class="blog-post-author">Yazar: AnimalLover</p>
+                    <p class="blog-post-date">Tarih: 15 Temmuz 2023</p>
+                    <div class="blog-post-text">
+                        <p>
+                            Merhaba! Ben AnimalLover. PetConnect ile yaşadığımız harika bir evlat edinme hikayesini sizinle paylaşmak istedim.
+                            Uzun süredir evlat edinmek istediğimiz bir köpeği bulduk ve hemen iletişime geçtik.
+                            PetConnect sayesinde uyumlu bir şekilde tanıştık ve onu evimize getirdik.
+                        </p>
+                    </div>
+                    <div class="blog-post-expand">
+                        <a href="#" class="read-more">Devamını Gör</a>
+                    </div>
+                    <div class="blog-post-like">
+                        <i class="like-icon far fa-heart"></i>
+                        <span class="like-count">50 beğeni</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="blog-row">
+            <div class="blog-post">
+                <div class="blog-post-img">
+                    <img src="https://blog.n11.com/wp-content/uploads/2016/12/en-populer-11-evcil-hayvan-11.jpg" alt="Blog Görseli 3">
+                </div>
+                <div class="blog-post-content">
+                    <h3 class="blog-post-title">Bir Köpekle Mutlu Bir Hayat</h3>
+                    <p class="blog-post-author">Yazar: DogLover</p>
+                    <p class="blog-post-date">Tarih: 10 Ağustos 2023</p>
+                    <div class="blog-post-text">
+                        <p>
+                            Merhaba! Ben DogLover. Size bir köpekle geçirdiğim mutlu bir hayatı anlatmak istiyorum.
+                            PetConnect sayesinde hayalini kurduğum köpeğimi buldum ve onunla güzel anılar biriktirdim.
+                            Köpeğimle birlikte parklarda gezinti yapmak, oyunlar oynamak ve sevgi dolu bir dostluk kurmak beni çok mutlu ediyor.
+                        </p>
+                    </div>
+                    <div class="blog-post-expand">
+                        <a href="#" class="read-more">Devamını Gör</a>
+                    </div>
+                    <div class="blog-post-like">
+                        <i class="like-icon far fa-heart"></i>
+                        <span class="like-count">27 beğeni</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-post">
+                <div class="blog-post-img">
+                    <img src="https://www.uplifers.com/app/uploads/2020/02/cocuklar-ve-evcil-hayvanlar.jpg" alt="Blog Görseli 4">
+                </div>
+                <div class="blog-post-content">
+                    <h3 class="blog-post-title">Sokaktan Kurtuluş Hikayemiz</h3>
+                    <p class="blog-post-author">Yazar: StreetRescuer</p>
+                    <p class="blog-post-date">Tarih: 5 Eylül 2023</p>
+                    <div class="blog-post-text">
+                        <p>
+                            Merhaba! Ben StreetRescuer. Sokak hayvanlarını koruma ve sahiplenme konusunda PetConnect'in büyük bir etkisi olduğunu görmek beni çok mutlu ediyor.
+                            Bir sokak köpeğini sahiplendikten sonra hayatımız tamamen değişti.
+                            PetConnect sayesinde bu köpeği bulduk ve ona yeni bir yuva sağladık.
+                        </p>
+                    </div>
+                    <div class="blog-post-expand">
+                        <a href="#" class="read-more">Devamını Gör</a>
+                    </div>
+                    <div class="blog-post-like">
+                        <i class="like-icon far fa-heart"></i>
+                        <span class="like-count">42 beğeni</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div>
+            <div><h3 class="txt4">Sen de deneyiminden bahset!</h3></div>
+            <div>@Html.ActionLink("Bahset", "blogformu", "home", new { @class = "nav-link custom-btn-outline text-secondary" })</div>
+            
+            
+        </div>
+    </div>
+
+        <footer class="bg-dark text-center py-4 mt-5 text-light">
+            <p> © 2023 PetConnect Tüm hakları saklıdır.</p>
+            <div class="social-icons">
+                <a href="#" target="_blank"><i class="fab fa-facebook" style="font-size: 20px; color: #fff;"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-twitter" style="font-size: 20px; color: #fff;"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram" style="font-size: 20px; color: #fff;"></i></a>
+            </div>
+        </footer>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="https://widget.flowxo.com/embed.js" data-fxo-widget="eyJ0aGVtZSI6IiMzNmI0OWEiLCJ3ZWIiOnsiYm90SWQiOiI2MWQ4MTczNDkzZTdiZDI1Y2ZiNTI3ODkiLCJ0aGVtZSI6IiMzNmI0OWEiLCJsYWJlbCI6IkJpemUgc29ydSBzb3IhIn0sIndlbGNvbWVUZXh0IjoiQml6ZSBzb3J1IHNvciHwn5Cx8J+QtiJ9" async defer></script>
+        <script src="~/jscodes/JavaScript.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+
+</body>
+</html>

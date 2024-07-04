@@ -1,0 +1,143 @@
+﻿
+@model finalp.Models.ilanlar
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İlan Verme Formu</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .submit-button {
+            background-color: #79cdcd;
+            color: #f2f2f2;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .submit-button:hover {
+                background-color: #eee5de;
+                color: #66cdaa;
+            }
+
+        .card-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .card-img {
+            width: 220px;
+            height: 220px;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>İlan Verme Formu</h1>
+        @using (Html.BeginForm())
+        {
+            
+
+            <div class="form-group">
+                
+                @Html.LabelFor(model => model.ResimURL, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.ResimURL, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ResimURL, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <span class="control-label"> Başlık</span>
+               
+                @Html.TextBoxFor(model => model.Baslik, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Baslik, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <span class="control-label"> Tür </span>
+
+                
+
+                @Html.DropDownListFor(model => model.Tur, new SelectList(new List<SelectListItem>
+                {
+            new SelectListItem { Text = "Kedi", Value = "kedi" },
+            new SelectListItem { Text = "Köpek", Value = "kopek" },
+            new SelectListItem { Text = "Tavşan", Value = "tavsan" }
+        }, "Value", "Text"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Tur)
+            </div>
+
+            <div class="form-group">
+                <span class="control-label"> Cins </span>
+                
+                @Html.TextBoxFor(model => model.Cinsi, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Cinsi, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+             
+                @Html.LabelFor(model => model.Konum, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.Konum, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Konum, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <span class="control-label"> Detaylı Bilgi </span>
+               
+                @Html.TextAreaFor(model => model.DetayliBilgi, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DetayliBilgi, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="İlan Ver" class="btn btn-primary" />
+            </div>
+        }
+
+    </div>
+
+    <div class="form-container">
+        <h2>İlan Verme Örneği</h2>
+        <div class="card mb-3">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="https://cf.kizlarsoruyor.com/q20077768/7b1d8e6e-a690-4884-af45-5de49d589583.jpg" alt="Hayvan Fotoğrafı" class="card-img">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body card-content">
+                        <h5 class="card-title">Tür: Kedi</h5>
+                        <p class="card-text">Cins: Scottish Fold</p>
+                        <p class="card-text">Konum: İstanbul</p>
+                        <p class="card-text">Açıklama: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel ultricies neque.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

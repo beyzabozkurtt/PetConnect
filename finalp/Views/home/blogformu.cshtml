@@ -1,0 +1,97 @@
+﻿@model finalp.Models.blog
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Sayfası</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        .blog-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .submit-button {
+            background-color: #79cdcd;
+            color: #f2f2f2;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .submit-button:hover {
+                background-color: #eee5de;
+                color: #66cdaa;
+            }
+    </style>
+</head>
+<body>
+    <div class="blog-container">
+        <h1>Blog Yazısı</h1>
+        @using (Html.BeginForm())
+{
+        <div class="form-group">
+            @Html.LabelFor(model => model.ResimURL)
+            @Html.TextBoxFor(model => model.ResimURL, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.ResimURL)
+        </div>
+
+        <div class="form-group">
+            <span>Başlık</span>
+           
+            @Html.TextBoxFor(model => model.Baslik, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.Baslik)
+        </div>
+
+        <div class="form-group">
+            <span>Yazar</span>
+            @Html.TextBoxFor(model => model.Yazar, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Yazar)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tarih)
+            @Html.TextBoxFor(model => model.Tarih, new { @class = "form-control", type = "date", required = "required" })
+            @Html.ValidationMessageFor(model => model.Tarih)
+        </div>
+
+        <div class="form-group">
+            <span>İçerik</span>
+            @Html.TextAreaFor(model => model.Icerik, new { @class = "form-control", rows = "6" })
+            @Html.ValidationMessageFor(model => model.Icerik)
+        </div>
+
+        <button type="submit" class="btn btn-primary submit-button">Gönder</button>
+}
+    </div>
+
+    <div class="blog-container">
+        <h2>Örnek Blog Yazısı</h2>
+        <p><strong>Yazar:</strong> John Doe</p>
+        <p><strong>Tarih:</strong> 21 Haziran 2023</p>
+        <h3>Blog Yazısı Başlığı</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <img src="https://www.kampustenevar.com/medya-galerisi/hug_201600.jpg" alt="Blog Yazısı Fotoğrafı" class="img-fluid">
+            </div>
+            <div class="col-md-8">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel ultricies neque. Nulla id felis a purus elementum aliquet. Proin ac condimentum leo. Nulla facilisi. Mauris pellentesque facilisis nisl at rutrum. Donec consequat finibus arcu nec rutrum. Sed id purus fringilla, convallis lectus in, euismod tortor.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
